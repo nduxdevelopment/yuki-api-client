@@ -68,14 +68,6 @@ class GlAccount
     }
 
     /**
-     * @return null | bool
-     */
-    public function getIsTitle() : ?bool
-    {
-        return strlen($this->code) < 6;
-    }
-
-    /**
      * @param null | string $code
      * @return static
      */
