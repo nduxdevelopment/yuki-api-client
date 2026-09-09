@@ -22,9 +22,9 @@
         }
     },
     "require": {
-        "phpro/soap-client": "^3.3",
+        "phpro/soap-client": "^4.8",
         "symfony/http-client": "^6.4",
         "nyholm/psr7": "^1.8",
-        "php-soap/wsdl-reader": "^0.16.0"
+        "php-soap/wsdl-reader": "^0.31.0"
     }
 }
