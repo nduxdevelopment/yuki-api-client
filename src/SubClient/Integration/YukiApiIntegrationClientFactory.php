@@ -5,7 +5,7 @@ namespace MaartenDeBlock\YukiApiClient\SubClient\Integration;
 use MaartenDeBlock\YukiApiClient\SubClient\Integration\YukiApiIntegrationClient;
 use MaartenDeBlock\YukiApiClient\SubClient\Integration\YukiApiIntegrationClassmap;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Soap\ExtSoapEngine\ExtSoapEngineFactory;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Caller\EngineCaller;
@@ -14,7 +14,7 @@ class YukiApiIntegrationClientFactory
 {
     public static function factory(string $wsdl) : \MaartenDeBlock\YukiApiClient\SubClient\Integration\YukiApiIntegrationClient
     {
-        $engine = DefaultEngineFactory::create(
+        $engine = ExtSoapEngineFactory::fromOptions(
             ExtSoapOptions::defaults($wsdl, [])
                 ->withClassMap(YukiApiIntegrationClassmap::getCollection())
         );
@@ -25,4 +25,3 @@ class YukiApiIntegrationClientFactory
         return new YukiApiIntegrationClient($caller);
     }
 }
-

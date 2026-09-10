@@ -25,6 +25,8 @@
         "phpro/soap-client": "^4.8",
         "symfony/http-client": "^6.4",
         "nyholm/psr7": "^1.8",
-        "php-soap/wsdl-reader": "^0.31.0"
+        "php-soap/ext-soap-engine": "^1.7",
+        "php-soap/wsdl-reader": "^0.31.0",
+        "symfony/cache": "^6.4 || ^7.0"
     }
 }

@@ -5,7 +5,7 @@ namespace MaartenDeBlock\YukiApiClient\SubClient\Vat;
 use MaartenDeBlock\YukiApiClient\SubClient\Vat\YukiApiVatClient;
 use MaartenDeBlock\YukiApiClient\SubClient\Vat\YukiApiVatClassmap;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Soap\ExtSoapEngine\ExtSoapEngineFactory;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Caller\EngineCaller;
@@ -14,7 +14,7 @@ class YukiApiVatClientFactory
 {
     public static function factory(string $wsdl) : \MaartenDeBlock\YukiApiClient\SubClient\Vat\YukiApiVatClient
     {
-        $engine = DefaultEngineFactory::create(
+        $engine = ExtSoapEngineFactory::fromOptions(
             ExtSoapOptions::defaults($wsdl, [])
                 ->withClassMap(YukiApiVatClassmap::getCollection())
         );
@@ -25,4 +25,3 @@ class YukiApiVatClientFactory
         return new YukiApiVatClient($caller);
     }
 }
-

@@ -5,7 +5,7 @@ namespace MaartenDeBlock\YukiApiClient\SubClient\Purchase;
 use MaartenDeBlock\YukiApiClient\SubClient\Purchase\YukiApiPurchaseClient;
 use MaartenDeBlock\YukiApiClient\SubClient\Purchase\YukiApiPurchaseClassmap;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Soap\ExtSoapEngine\ExtSoapEngineFactory;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Caller\EngineCaller;
@@ -14,7 +14,7 @@ class YukiApiPurchaseClientFactory
 {
     public static function factory(string $wsdl) : \MaartenDeBlock\YukiApiClient\SubClient\Purchase\YukiApiPurchaseClient
     {
-        $engine = DefaultEngineFactory::create(
+        $engine = ExtSoapEngineFactory::fromOptions(
             ExtSoapOptions::defaults($wsdl, [])
                 ->withClassMap(YukiApiPurchaseClassmap::getCollection())
         );
@@ -25,4 +25,3 @@ class YukiApiPurchaseClientFactory
         return new YukiApiPurchaseClient($caller);
     }
 }
-
